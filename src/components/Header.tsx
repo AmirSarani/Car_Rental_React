@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import header_hamburger_logo from "../media/header_hamburger_logo.svg";
 import header_logo from "../media/header_logo.svg";
 import X_logo from "../media/X_logo.svg";
-
 import clsx from "clsx";
+import { useNavigate } from "react-router";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -31,14 +33,35 @@ export const Header = () => {
 
         <div
           className={clsx(
-            "flex justify-start items-start flex-col fixed bg-[#F1F5F9] w-full h-full top-16 transition-all  px-[25px] py-[20px]",
+            "flex justify-start items-start flex-col fixed z-999 bg-[#F1F5F9] w-full h-full top-16 transition-all  px-[25px] py-[20px]",
             { "-right-full": !open, "right-0": open }
           )}
         >
           <ul className="text-[16px] flex flex-col gap-[15px] mb-[40px] text-[#4A5565]">
-            <li>Home</li>
-            <li>Cars</li>
-            <li>My Bookings</li>
+            <li
+              onClick={() => {
+                navigate("/");
+                setIsOpen(false);
+              }}
+            >
+              Home
+            </li>
+            <li
+              onClick={() => {
+                navigate("/Cars");
+                setIsOpen(false);
+              }}
+            >
+              Cars
+            </li>
+            <li
+              onClick={() => {
+                navigate("/MyBooking");
+                setIsOpen(false);
+              }}
+            >
+              My Bookings
+            </li>
             <li>List cars</li>
           </ul>
 
